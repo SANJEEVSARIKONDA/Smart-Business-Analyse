@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Admin Home Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-inverse " style="margin-bottom: 0">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#coll" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Restaurant</a>
+        <!---star rating-->
+        <
+      </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse " id="coll" style="margin-right: 20px">
+      <ul class="nav navbar-nav navbar-right">
+
+       
+      <li class="nav-item">
+     <a href="/"><button class="btn btn-primary">Logout</button></a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+<div class="container">
+    <img src="/static/images/va-exterior.jpg" class="p-0" style="width:100%;height:500px" >
+</div>
+<div class="container"><br>
+  <div class="row">
+    <div class="col-sm-6">
+      
+      <br><br>
+      <form method="POST" action="/admin/food">
+        <button class="btn btn-primary" data-toggle="modal" >
+        Food         
+        </button>
+      </form>
+      <br><br>
+      <form method="POST" action="/admin/rooms">
+        <button class="btn btn-primary" data-toggle="modal" >
+        Rooms        
+        </button>
+      </form>
+    </div>
+    <div class="col-sm-6">
+    <ul class="list-group">
+      {% with reviews = get_flashed_messages() %}
+            {% if reviews %}
+              {% for mess in reviews[0] %}
+              <div>
+            
+            <li class="list-group-item">{{mess}}</h4>
+            
+             
+              </div>
+              {% endfor %}
+                
+            {% endif %}
+        {% endwith %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

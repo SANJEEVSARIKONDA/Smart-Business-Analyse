@@ -1,0 +1,237 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<style type="text/css">
+  .img-circle{
+    border-radius: 50%;
+  }
+.stars-outer {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+.scrollpy{
+  float:left;
+  overflow-y: auto;
+  height: 300px;
+}
+textarea#name{
+  height: 163px;
+  width: 300px;
+}
+
+</style>
+
+
+{% extends "bootstrap/base.html" %}
+{% block content %}
+
+<div class="container">
+<nav class="navbar navbar-inverse " style="margin-bottom: 0">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#coll" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">XYZ Hotel</a>
+        
+      </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse " id="coll" style="margin-right: 20px">
+      <ul class="nav navbar-nav navbar-right">
+
+       
+      <li class="nav-item">
+    <!-- <form method="POST" action="/admin">
+        <button class="btn btn-primary" data-toggle="modal" >
+               
+        </button>
+    </form>-->
+
+  
+  </div><!-- /.modal -->
+</li>
+</ul>
+
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container -->
+</nav>
+</div>
+
+
+<div class="container">
+    <img src="./static/images/image.jpg" class="p-0" style="width:100%;height:500px">
+</div>
+<div class="container">
+<!--Thumbnails -->
+<div class="row" style="margin-top: 5px">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="./static/images/food.jpg" alt="Dish image" style="width: 70%; height: 30%" class="img-circle">
+      <div class="caption">
+        <h3>Food</h3>
+        <p>When you rise in the morning, give thanks for the light, for your life, for your strength. Give thanks for your food and for the joy of living. If you see no reason to give thanks, the fault lies in yourself.</p>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="./static/images/room.jpeg" alt="Image of room" style="width: 70%; height: 33%" class="img-circle">
+      <div class="caption">
+        <h3>Rooms</h3>
+        <p>When a small night-lamp alone illuminated our love-making, it became a very small, circular room which silently passed through nights humming with stars.</p>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="./static/images/ambi.jpg" alt="Ambiance image" style="width: 70%; height: 30%"  class="img-circle">
+      <div class="caption">
+        <h3>Ambiance</h3>
+        <p>Joy requires one to be awake, Adjusting the heart's ambience to bright. Some prefer the dark, as is their right, On grounds of agony, and to forsake Not only bliss, but all that's blessed by light.</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--Thumbnails -->
+<div class="card" style="height: 400px">
+<div class="container" >
+<div class="row" >
+<div class="col-sm-6">
+
+    <div class="card" style="width: 35rem;">
+    <div class="card-body">
+        
+        
+        <form action="" method="post">
+            {{ form.csrf }}
+          <div class="textarea">
+
+                    <h5>{{ form.name.label }} {{ form.name }}</h5>
+                </div>
+             <h3 align="right">
+            <div class="input submit">
+            <input type="submit" value="Submit"/>
+
+            </div>
+            </h3>
+            </form>
+</div>
+</div>
+</div>
+
+ <div class="col-sm-6">
+<!---star rating-->
+        <div>
+          <div class="star">
+          <div class="stars-outer ">
+            <div class="stars-inner"></div>
+          </div>
+        </div>
+        </div>
+        <div>
+        <div class="scrollpy">
+       
+  
+  
+        {% with reviews = get_flashed_messages() %}
+            {% if reviews %}
+              {% for mess in reviews[0] %}
+             
+            
+            <h4 id="list-item-1">{{mess}}<hr></h4>
+            
+             
+             
+              {% endfor %}
+                
+            {% endif %}
+        {% endwith %}
+        
+      
+     
+        </div>
+     
+</div>
+</div>
+
+</div>
+</div>
+        <script type="text/javascript" src="static/js/sample.js"></script>
+<script type="text/javascript">
+ // Initial Ratings
+const ratings = {star: 0}
+
+// Total Stars
+const starsTotal = 5;
+
+// Run getRatings when DOM loads
+document.addEventListener('DOMContentLoaded', getRatings);
+
+
+    
+// Init product
+let product;  
+
+// Rating control change
+    
+
+// Get ratings
+function getRatings() {
+      for (let rating in ratings) {
+        // Get percentage
+        
+        const any={{star}}
+
+        //const any = document.getElementById('input1')
+        // Round to nearest 10
+        const starPercentageRounded = any +'%';
+
+        // Set width of stars-inner to percentage
+        document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+
+        // Add number rating
+        document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+      }
+    }
+
+    </script>
+{% endblock %}
+  
+        
+                
+            
+               
+            
+
+        
